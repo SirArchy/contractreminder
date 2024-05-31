@@ -31,10 +31,10 @@ data class Contract(
     val nextCancelableDate: LocalDate
 )
 
-@androidx.compose.runtime.Composable
+@Composable
 fun ContractReminderApp(navController: NavController, context: Context) {
-    val (contracts, setContracts) = androidx.compose.runtime.remember {
-        androidx.compose.runtime.mutableStateOf(
+    val (contracts, setContracts) = remember {
+        mutableStateOf(
             listOf<Contract>()
         )
     }
@@ -62,7 +62,7 @@ fun ContractReminderApp(navController: NavController, context: Context) {
     }
 }
 
-@androidx.compose.runtime.Composable
+@Composable
 fun ContractCard(contract: Contract, navController: NavController, context: Context) {
     androidx.compose.material3.Card(
         modifier = Modifier
@@ -71,21 +71,21 @@ fun ContractCard(contract: Contract, navController: NavController, context: Cont
             .clickable { /* Navigate to contract details screen */ },
         elevation = 4.dp
     ) {
-        androidx.compose.foundation.layout.Column(modifier = Modifier.padding(16.dp)) {
-            androidx.compose.foundation.layout.Row(verticalAlignment = Alignment.CenterVertically) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(
                     painter = painterResource(id = contract.logo),
                     contentDescription = contract.name,
                     modifier = Modifier.size(48.dp)
                 )
-                androidx.compose.foundation.layout.Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(16.dp))
                 androidx.compose.material3.Text(
                     text = contract.name,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 )
             }
-            androidx.compose.foundation.layout.Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             androidx.compose.material3.Text(
                 text = "Start Date: ${contract.startDate}",
                 color = Color.Gray
